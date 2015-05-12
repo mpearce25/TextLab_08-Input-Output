@@ -11,7 +11,7 @@ public class TextLab08_Matthew_Pearce {
 
 		System.out.println("\nTextLab08\n");
 		readFile("Names1.txt");
-		displayArray();
+		
 		sortArray();
 		displayArray(); // Uncomment this line for 100 point version only.
 		writeFile("Names2.txt");
@@ -44,8 +44,9 @@ public class TextLab08_Matthew_Pearce {
 		int p = 1;
 		do {
 			sorted = true;
+			
 			for (int q = 0; q < namesList.size() - p; q++)
-				if (namesList.get(q).compareTo(namesList.get(q+1)) > 0) {
+				if (namesList.get(q +1).compareTo(namesList.get(q)) < 0) {
 					swap(q, q + 1);
 					sorted = false;
 				}
@@ -72,80 +73,5 @@ public class TextLab08_Matthew_Pearce {
 	}
 }
 
-class ExpoInFile {
 
-	private String fileName;
-	private BufferedReader inFile;
 
-	/**
-	 * ExpoInFile constructor method. Associates external file name with
-	 * internal file object. Constructs file object for reading in string values
-	 * from external file.
-	 **/
-	public ExpoInFile(String s) throws IOException {
-		fileName = s;
-		inFile = new BufferedReader(new FileReader(fileName));
-	}
-
-	/**
-	 * Returns a single string from external file to internal file object.
-	 **/
-	public String readString() throws IOException {
-		String inString = inFile.readLine();
-		return inString;
-	}
-
-	/**
-	 * Closes file object.
-	 **/
-	public void closeFile() throws IOException {
-		inFile.close();
-	}
-
-}
-
-/**
- * The ExpoOutFile class handles data file for output. Data files are limited to
- * text files and only strings are transferred from internal file objects to
- * external hard drive files.
- **/
-class ExpoOutFile {
-
-	private String fileName;
-	private BufferedWriter outFile;
-
-	/**
-	 * ExpoOutFile constructor method. Associates external file name with
-	 * internal file object. Constructs file object for writing out string
-	 * values to an external file.
-	 **/
-	public ExpoOutFile(String s) throws IOException {
-		fileName = s;
-		outFile = new BufferedWriter(new FileWriter(fileName));
-	}
-
-	/**
-	 * Writes a single string from internal file object to external hard drive
-	 * file.
-	 **/
-	public void writeString(String s) throws IOException {
-		outFile.write(s);
-	}
-
-	/**
-	 * Writes a single string from internal file object to external hard drive
-	 * file. Additionally a linefeed/carriage return is added.
-	 **/
-	public void writelnString(String s) throws IOException {
-		outFile.write(s);
-		outFile.newLine();
-	}
-
-	/**
-	 * Closes file object.
-	 **/
-	public void closeFile() throws IOException {
-		outFile.close();
-	}
-
-}
